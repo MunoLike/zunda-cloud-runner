@@ -1,14 +1,34 @@
-use axum::{response::Html, routing::get, Router};
-use std::net::SocketAddr;
+use axum::{extract::Path, routing::get, Json, Router};
 
-async fn handler() -> Html<&'static str> {
-    println!("OK!");
-    Html("<h1>Hello, World!<h1>")
+use serde::Serialize;
+use std::net::SocketAddr;
+use uuid::Uuid;
+
+mod bindings;
+use bindings::*;
+
+#[derive(Serialize, Debug)]
+struct User {
+    id: Uuid,
+    username: String,
+}
+
+async fn get_user() -> Json<User> {
+    let user = User {
+        id: Uuid::new_v4(),
+        username: String::from("aaaaaaaa"),
+    };
+    println!("{:?}", user);
+    Json(user)
 }
 
 #[tokio::main]
 async fn main() {
-    let app = Router::new().route("/", get(handler));
+    unsafe {
+        let core = voicevox_core::new(String::from("./libvoicevox_core.so")).unwrap();
+    };
+
+    let app = Router::new().route("/", get(get_user));
 
     let addr = SocketAddr::from(([127, 0, 0, 1], 3000));
     println!("listening on {}", addr);

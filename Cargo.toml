@@ -1,5 +1,5 @@
 [package]
-name = "template"
+name = "zunda-cloud-runner"
 version = "0.1.0"
 edition = "2021"
 
@@ -7,6 +7,9 @@ edition = "2021"
 
 [dependencies]
 axum="0.6.1"
-tokio = { version = "1", features = ["full"] }
+tokio = { version = "1.22", features = ["full"] }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
+uuid={version="1.2", features=["serde", "v4", "fast-rng"]}
+bindgen="0.63"
+libloading="0.7.4"

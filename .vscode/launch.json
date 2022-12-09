@@ -5,17 +5,17 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug executable 'template'",
+            "name": "Debug executable 'zunda-cloud-runner'",
             "type": "lldb",
             "request": "launch",
             "cargo": {
                 "args": [
                     "build",
-                    "--bin=template",
-                    "--package=template"
+                    "--bin=zunda-cloud-runner",
+                    "--package=zunda-cloud-runner"
                 ],
                 "filter": {
-                    "name": "template",
+                    "name": "zunda-cloud-runner",
                     "kind": "bin"
                 }
             },
@@ -26,18 +26,18 @@
             ]
         },
         {
-            "name": "Debug unit tests in executable 'template'",
+            "name": "Debug unit tests in executable 'zunda-cloud-runner'",
             "type": "lldb",
             "request": "launch",
             "cargo": {
                 "args": [
                     "test",
                     "--no-run",
-                    "--bin=template",
-                    "--package=template"
+                    "--bin=zunda-cloud-runner",
+                    "--package=zunda-cloud-runner"
                 ],
                 "filter": {
-                    "name": "template",
+                    "name": "zunda-cloud-runner",
                     "kind": "bin"
                 }
             },
